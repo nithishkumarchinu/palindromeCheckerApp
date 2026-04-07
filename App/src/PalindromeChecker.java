@@ -1,27 +1,24 @@
-//uc5
-import java.util.Stack;
+//UseCase9
 
 public class UseCasePalindromeCheckerApp {
 
+    public static boolean isPalindrome(String str, int left, int right) {
+        if (left >= right) {
+            return true;
+        }
+        if (str.charAt(left) != str.charAt(right)) {
+            return false;
+        }
+        return isPalindrome(str, left + 1, right - 1);
+    }
+
     public static void main(String[] args) {
 
-        String input = "madam1";
-        Stack<Character> stack = new Stack<>();
+        String input = "level";
 
-        for (int i = 0; i < input.length(); i++) {
-            stack.push(input.charAt(i));
-        }
+        boolean result = isPalindrome(input, 0, input.length() - 1);
 
-        boolean isPalindrome = true;
-
-        for (int i = 0; i < input.length(); i++) {
-            if (input.charAt(i) != stack.pop()) {
-                isPalindrome = false;
-                break;
-            }
-        }
-
-        if (isPalindrome) {
+        if (result) {
             System.out.println("The given string is a Palindrome");
         } else {
             System.out.println("The given string is NOT a Palindrome");
