@@ -1,21 +1,22 @@
-//uc5
-import java.util.Stack;
+//UseCase8
+
+import java.util.LinkedList;
 
 public class UseCasePalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        String input = "madam1";
-        Stack<Character> stack = new Stack<>();
+        String input = "madam";
+        LinkedList<Character> list = new LinkedList<>();
 
-        for (int i = 0; i < input.length(); i++) {
-            stack.push(input.charAt(i));
+        for (char ch : input.toCharArray()) {
+            list.add(ch);
         }
 
         boolean isPalindrome = true;
 
-        for (int i = 0; i < input.length(); i++) {
-            if (input.charAt(i) != stack.pop()) {
+        while (list.size() > 1) {
+            if (!list.removeFirst().equals(list.removeLast())) {
                 isPalindrome = false;
                 break;
             }
