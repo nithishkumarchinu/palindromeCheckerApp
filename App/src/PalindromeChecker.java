@@ -1,28 +1,35 @@
-//uc5
-import java.util.Stack;
+//usecase11
+
+class PalindromeService {
+
+    public boolean isPalindrome(String input) {
+
+        int left = 0;
+        int right = input.length() - 1;
+
+        while (left < right) {
+            if (input.charAt(left) != input.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+}
 
 public class UseCasePalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        String input = "madam1";
-        Stack<Character> stack = new Stack<>();
+        String input = "radar";
 
-        for (int i = 0; i < input.length(); i++) {
-            stack.push(input.charAt(i));
-        }
+        PalindromeService service = new PalindromeService();
+        boolean result = service.isPalindrome(input);
 
-        boolean isPalindrome = true;
-
-        for (int i = 0; i < input.length(); i++) {
-            if (input.charAt(i) != stack.pop()) {
-                isPalindrome = false;
-                break;
-            }
-        }
-
-        if (isPalindrome) {
-            System.out.println("The given string is a Palindrome");
+        if (result) {
+            System.out.println("The given string is a Palindrome (OOP Design)");
         } else {
             System.out.println("The given string is NOT a Palindrome");
         }
