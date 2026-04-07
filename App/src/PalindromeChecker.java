@@ -1,28 +1,50 @@
-//uc5
-import java.util.Stack;
+//UseCase12
+
+interface PalindromeStrategy {
+    boolean isPalindrome(String input);
+}
+
+// Strategy 1: Two Pointer Method
+class TwoPointerStrategy implements PalindromeStrategy {
+
+    public boolean isPalindrome(String input) {
+        int left = 0;
+        int right = input.length() - 1;
+
+        while (left < right) {
+            if (input.charAt(left) != input.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+}
+
+// Strategy 2: Reverse String Method
+class ReverseStringStrategy implements PalindromeStrategy {
+
+    public boolean isPalindrome(String input) {
+        String reversed = new StringBuilder(input).reverse().toString();
+        return input.equals(reversed);
+    }
+}
 
 public class UseCasePalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        String input = "madam1";
-        Stack<Character> stack = new Stack<>();
+        String input = "level";
 
-        for (int i = 0; i < input.length(); i++) {
-            stack.push(input.charAt(i));
-        }
+        // Choose strategy
+        PalindromeStrategy strategy = new TwoPointerStrategy();
+        // PalindromeStrategy strategy = new ReverseStringStrategy();
 
-        boolean isPalindrome = true;
+        boolean result = strategy.isPalindrome(input);
 
-        for (int i = 0; i < input.length(); i++) {
-            if (input.charAt(i) != stack.pop()) {
-                isPalindrome = false;
-                break;
-            }
-        }
-
-        if (isPalindrome) {
-            System.out.println("The given string is a Palindrome");
+        if (result) {
+            System.out.println("The given string is a Palindrome (Strategy Pattern)");
         } else {
             System.out.println("The given string is NOT a Palindrome");
         }
