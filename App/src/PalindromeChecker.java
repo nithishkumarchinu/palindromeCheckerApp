@@ -1,28 +1,30 @@
-//uc5
-import java.util.Stack;
+//UseCase10
 
 public class UseCasePalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        String input = "madam1";
-        Stack<Character> stack = new Stack<>();
+        String input = "A man a plan a canal Panama";
 
-        for (int i = 0; i < input.length(); i++) {
-            stack.push(input.charAt(i));
-        }
+        // Normalize: remove spaces and convert to lowercase
+        String normalized = input.replaceAll("\\s+", "").toLowerCase();
+
+        int left = 0;
+        int right = normalized.length() - 1;
 
         boolean isPalindrome = true;
 
-        for (int i = 0; i < input.length(); i++) {
-            if (input.charAt(i) != stack.pop()) {
+        while (left < right) {
+            if (normalized.charAt(left) != normalized.charAt(right)) {
                 isPalindrome = false;
                 break;
             }
+            left++;
+            right--;
         }
 
         if (isPalindrome) {
-            System.out.println("The given string is a Palindrome");
+            System.out.println("The given string is a Palindrome (ignoring case & spaces)");
         } else {
             System.out.println("The given string is NOT a Palindrome");
         }
