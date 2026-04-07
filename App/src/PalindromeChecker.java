@@ -1,4 +1,4 @@
-//UseCase12
+  //UseCase12
 
 interface PalindromeStrategy {
     boolean isPalindrome(String input);
